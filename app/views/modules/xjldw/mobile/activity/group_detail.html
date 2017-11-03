@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<title>团购</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport"
+	          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+	
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="yes" name="apple-touch-fullscreen" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<link rel="stylesheet" href="/public/css/main.css" />
+</head>
+
+<body  ng-controller="MainController">
+<div class="main">
+  <div class="row posrel" ng-show="showSummary==false">
+    <div class="tabbtn">
+      <input type="button" value="切换汇总" class="btn btn-blue" ng-click="switchSummary(true)"/>
+    </div>
+    <div class="padded-t-10">参与人数：<span class="font-size-16 font-weight-b">{{totalBuyer}}&nbsp;</span>
+         <span>总金额：{{totalAmount}}元</span>&nbsp;&nbsp;<span>数量：{{totalCount}}</span>
+    </div>
+    <div class="padded-t-10 padded-b-10">购买数量统计：</div>
+    <div class="padded-t-10 border-b" ng-repeat="studentInfo in studentInfoList">
+      <p class="padded-10"><span class="padded-r-10">{{studentInfo.name}}</span>
+      <span ng-repeat="item in studentInfo.itemInfo">
+      	<span ng-show="item.isOrder=='true'" class=" padded-l-10 padded-r-10 padded-b-5 padded-t-5 margin-l-10 bg-success text-white" >{{item.itemTitle}}</span>
+      	<span ng-show="item.isOrder=='false'" class=" padded-l-10 padded-r-10 padded-b-5 padded-t-5 margin-l-10" >{{item.itemTitle}}</span>
+      </span>
+      <p class="padded-10">合计：{{studentInfo.count}}个，{{studentInfo.amount}}元</p>
+    </div>
+    <div class="margin-t-15 margin-b-15 clearfix">
+      <span>截止时间:{{endTime}}</span>
+      <input ng-show="state=='1'" type="button" class="btn fr wid45 line-height-2 bg-warning" ng-click="closeGroupBuy()" value="现在关闭"/>
+      <input ng-show="state=='2'" type="button" class="btn fr wid45 line-height-2 bg-warning" value="已结束"/>
+    </div>
+  </div>
+  <div class="row posrel" ng-show="showSummary==true">
+    <div class="tabbtn">
+      <input type="button" value="切换明细" class="btn btn-blue" ng-click="switchSummary(false)"/>
+    </div>
+    <div class="padded-t-10">参与人数：<span class="font-size-16 font-weight-b">{{totalBuyer}}&nbsp;</span>
+         <span>总金额：{{totalAmount}}元</span>&nbsp;&nbsp;<span>数量：{{totalCount}}</span>
+    </div>
+    <div class="padded-t-10 padded-b-10 hide">购买数量统计：</div>
+    <div class="padded-t-10" id="groupEcharts" style="width: 100%;height:400px;"> 
+    </div>
+    <div class="margin-t-15 margin-b-15 clearfix">
+      <span>截止时间:{{endTime}}</span>
+      <input ng-show="${wxUser.isCommittee}==true && state=='1'" type="button" class="btn fr wid45 line-height-2 bg-warning" ng-click="closeGroupBuy()" value="现在关闭"/>
+      <input ng-show="${wxUser.isCommittee}==false && state=='1'" type="button" class="btn fr wid45 line-height-2 bg-warning" value="进行中"/>
+      <input ng-show="state=='2'" type="button" class="btn fr wid45 line-height-2 bg-warning" value="已结束"/>
+    </div>
+  </div>
+</div>
+<script src="/public/widgets/echarts/echarts.js"></script>
+<script src="/public/widgets/layer.m/layer.m.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+<script>
+    angular.module('app', ['ngTouch'])
+            .factory('remote', ['$http', function ($http) {
+                return {
+                	queryGroupStatistics: function (groupBuyId) {
+                        return $http({
+                            method: 'GET',
+                            url: '/mobile/ActivityService/queryGroupStatistics',
+                            params: {
+                            	groupBuyId:groupBuyId
+                            }
+                        })
+                    },
+                    closeGroupBuy: function (groupBuyId) {
+                        return $http({
+                            method: 'GET',
+                            url: '/mobile/ActivityService/closeGroupBuy',
+                            params: {
+                            	groupBuyId:groupBuyId
+                            }
+                        })
+                    }
+                };
+            }])
+            .controller('MainController', ['$scope', 'remote', function ($scope, remote) {
+            	$scope.showSummary=true;
+            	$scope.title;//标题
+            	$scope.state;//状态，1进行中，2结束
+            	$scope.totalBuyer=0;//团购人数
+             	$scope.totalAmount=0;//团购金额
+             	$scope.totalCount=0;//团购的明细数量
+             	$scope.endTime;//团购截止日志
+             	$scope.closeFlag;//团购结束标识
+            	$scope.itemInfoList=[];//团购明细
+             	$scope.studentInfoList=[];//学生信息列表
+                $scope.initPage = function (me) {
+                    remote.queryGroupStatistics('${groupBuyId}').then(function (response) {
+                        $scope.title = response.data.data.title;
+                        $scope.state = response.data.data.state;
+                        $scope.totalBuyer = response.data.data.totalBuyer;
+                        $scope.totalAmount = response.data.data.totalAmount;
+                        $scope.endTime = response.data.data.endTime;
+                        $scope.closeFlag = response.data.data.closeFlag;
+                        $scope.itemInfoList = response.data.data.itemInfoList;
+                        $scope.studentInfoList = response.data.data.studentInfoList;
+                        console.log($scope.lists);
+                        var myChart = echarts.init(document.getElementById('groupEcharts'));
+                        var chartTitleList = [];
+                        var chartDataList = [];
+						for (var i = 0; i < $scope.itemInfoList.length; i++){
+							chartTitleList[i]=$scope.itemInfoList[i].title;
+							chartDataList[i]=$scope.itemInfoList[i].buyerCount;
+							$scope.totalCount+=parseInt($scope.itemInfoList[i].buyerCount);
+						}
+                        // 指定图表的配置项和数据
+                        var option = {
+                            title: {
+                                text: '购买数量统计:'
+                            },
+                            tooltip: {},
+                            legend: {
+                                data:['销量']
+                            },
+                            xAxis: {
+                                data: chartTitleList
+                            },
+                            yAxis: {},
+                            series: [{
+                                name: '销量',
+                                type: 'bar',
+                                data:chartDataList
+                            }]
+                        };
+
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart.setOption(option);
+                        if (me && me.resetload)
+                            me.resetload();
+
+                    }, function (response) {
+                        //err
+                    });
+                };
+                $scope.initPage();
+                // 基于准备好的dom，初始化echarts实例
+                //手动关闭团购
+                $scope.closeGroupBuy=function(){
+                        remote.closeGroupBuy('${groupBuyId}')
+                                .then(function (res) {
+                                    if (res.data.ret=='-1') {
+                                        layer.open({
+                                            content: res.data.desc,
+                                            btn: ['知道了']
+                                        });
+                                    }
+                                    else {
+                                        layer.open({
+                                            content: "团购关闭成功",
+                                            btn: ['确定'],
+                                            end: function () {
+                                                location.href = "/mobile/A/groupList";
+                                            }
+                                        });
+                                    }
+                                }, function () {
+                                    layer.open({
+                                        content: '提交异常',
+                                        btn: ['知道了']
+                                    });
+
+                                }).finally(function () {
+                                    layer.close(index);
+                                });
+                   
+                };
+                $scope.back= function () {
+                	location.href = "/mobile/A/manager";
+                };
+                $scope.switchSummary=function(flag){
+                   $scope.showSummary=flag;
+                }
+            }]);
+</script>
+</body>
+</html>

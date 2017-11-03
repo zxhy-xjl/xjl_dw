@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<title>通知公告</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<link rel="stylesheet" href="/public/css/main.css" />
+
+<script src="/public/widgets/zeptojs/zepto.min.js"></script>
+<script src="/public/widgets/dropload/dropload.min.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+
+ <script>
+
+        angular.module('app', ['ngTouch'])
+                .value('appValue', {
+                    index: 1,
+                    size: 10
+                })
+                .factory('agentRemote', ['$http', 'appValue', function ($http, appValue) {
+                    return {
+                        getData: function(index, size, searchText) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/ActivityService/queryNoticeList',
+                                params: {
+                                   // custManagerId: custManagerId,
+                                    PAGE_INDEX: index || appValue.index,
+                                    PAGE_SIZE: size || appValue.size
+                                   // searchKeyWord: searchText || ''
+                                }
+                            })
+                        }
+                    }
+                }])
+                .controller('MainController', ['$scope', 'appValue', 'agentRemote','$timeout', function ($scope, appValue, agentRemote,$timeout) {
+                    $scope.notices = [];
+                    //next page function
+                    $scope.nextPage = function (me) {
+                        agentRemote.getData(++appValue.index).then(function (response) {
+                            $scope.notices = $scope.notices.concat(response.data.data.data);
+                            if (me && me.resetload)
+                                me.resetload();
+
+                        }, function (response) {
+                            //err
+                        });
+                    };
+                    //init page function
+                    $scope.initPage = function (me) {
+                        appValue.index = 1;
+                        agentRemote.getData(1).then(function (response) {
+                            $scope.total = response.data.data.total;
+                            $scope.notices = response.data.data.data;
+                            console.log($scope.notices);
+                            if (me && me.resetload)
+                                me.resetload();
+
+                        }, function (response) {
+                            //err
+                        });
+                    };
+                    //search function
+                    var search = function (searchText, me) {
+                        if (!searchText) {
+                            //reset
+                            $scope.initPage();
+                        }
+                        else {
+                            agentRemote.getData(1, appValue.size, $scope.searchText).then(function (response) {
+                                $scope.total = response.data.data.total;
+                                $scope.notices = response.data.data.data;
+                                if (me && me.resetload)
+                                    me.resetload();
+                            }, function (response) {
+                                //err
+                            });
+                        }
+                    };
+
+
+                    var timeout = null;
+                    //watch searchText
+                    $scope.$watch('searchText', function (newValue, oldValue) {
+                        if (newValue != oldValue) {
+                            if (!timeout) {
+                                timeout = $timeout(function () {
+                                    search(newValue);
+                                    timeout = null;
+                                }, 200);
+                            }
+
+                        }
+                    });
+                    //exec init
+                    $scope.initPage();
+                    //init list for item
+                    //init dropload plugin
+                    //it's not the best way,just try it
+                    $('#scroller').dropload({
+                        domUp: {
+                            domClass: 'dropload-up',
+                            domRefresh: '<div class="dropload-refresh">↓下拉刷新</div>',
+                            domUpdate: '<div class="dropload-update">↑释放更新</div>',
+                            domLoad: '<div class="dropload-load"><span class="loading"></span>加载中...</div>'
+                        },
+                        domDown: {
+                            domClass: 'dropload-down',
+                            domRefresh: '<div class="dropload-refresh">↑上拉加载更多</div>',
+                            domUpdate: '<div class="dropload-update">↓释放加载</div>',
+                            domLoad: '<div class="dropload-load"><span class="loading"></span>加载中...</div>'
+                        },
+                        scrollArea: window,
+                        loadUpFn: function (me) {
+                            $scope.initPage(me);
+                            console.log('down');
+                        },
+                        loadDownFn: function (me) {
+
+                            $scope.nextPage(me);
+                            console.log('up');
+                        }
+                    });
+                }]);
+    </script>
+</head>
+
+<body ng-cloak ng-controller="MainController">
+<div class="main">
+  <div class="row">
+    <h3 class="padded-b-10 border-b  padded-t-10 text-default">通知公告
+         <a href="/mobile/A/noticeAdd"  class="btn-blue btn fr padded-r-10 padded-l-10">发布新通知</a>
+    </h3>
+    <div class="content" id="scroller" ng-show="notices.length!=0">
+      <ul class="list">
+		        <li class="border-b" ng-repeat="notice in notices">
+		          <h3 class="padded-t-10 font-weight-b ellipsis-2 text-main">{{notice.noticeTitle}}
+		         	 <span class="text-auxiliaryed fr font-size-13" ng-bind="notice.noticeDate">05-31</span>
+		          </h3>
+		            <a href="/mobile/A/noticeDetail?noticeId={{notice.noticeId}}"> 
+		                <p class="margin-t-10 margin-b-10">{{notice.noticeContent}}</p>
+		            </a>
+		        </li>
+       
+      </ul>
+
+      <div class="dropload-down">
+	      <div class="dropload-refresh">
+	                                             当前<span ng-bind="notices.length"></span>条记录 总共<span ng-bind="total"></span>条记录(滑动刷新)
+	       </div>
+      </div>
+       
+    </div><!-- content end -->
+    
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<title>作业发布</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<link rel="stylesheet" href="/public/css/main.css" />
+
+<script src="/public/widgets/zeptojs/zepto.min.js"></script>
+<script src="/public/widgets/dropload/dropload.min.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+<script>
+
+        angular.module('app', ['ngTouch'])
+                .value('appValue', {
+                    index: 1,
+                    size: 10
+                })
+                .factory('agentRemote', ['$http', 'appValue', function ($http, appValue) {
+                    return {
+                        querySubjectList:function(index, size, searchText) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/WorkService/querySubjectList',
+                                params: {
+                                    PAGE_INDEX: index || appValue.index,
+                                    PAGE_SIZE: size || appValue.size
+                                }
+                            })
+                        },
+                        saveHomework: function(homework) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/WorkService/saveHomework',
+                                params: {
+                                	homeWork:homework
+                                }
+                            })
+                        }
+                        
+                    }
+                }])
+                .controller('MainController', ['$scope', 'appValue','agentRemote','$timeout', function ($scope, appValue,agentRemote,$timeout) {
+                    $scope.subjectList = [];
+                    //作业模型
+                    $scope.homework = {
+                    		subject:{},
+                    		homeworkTitle:"",
+                    		homeworkContent:""
+                    };
+                	//init page function
+                    $scope.initPage = function (me) {
+                        agentRemote.querySubjectList(1).then(function (response) {
+                            $scope.subjectList = response.data.data.data;
+                            if (me && me.resetload){
+                                me.resetload();
+                            }
+                        }, function (response) {
+                            //err
+                        });
+                    };
+                    $scope.initPage();
+                    //保存作业
+                    $scope.saveHomework = function(){
+                    	console.log("homework",$scope.homework);
+                    	agentRemote.saveHomework($scope.homework).then(function (response) {
+                            console.log("response",response);
+                            window.location='/mobile/W/homeworkList';
+                        }, function (response) {
+                            //err
+                        });
+                    };
+                }]);
+    </script>
+</head>
+
+<body ng-cloak ng-controller="MainController">
+<div class="main">
+  <div class="row">
+    <!--h3 class="padded-b-10 padded-t-20">班级<span class="text-pink padded-l-5">*</span></h3>
+    <div class="border padded-5 posrel"><span>请选择班级</span><div class="tabbtn wid2 top0"><img src="../images/down.png" /></div>
+    </div-->
+    <h3 class="padded-b-10 padded-t-20">科目<span class="text-pink padded-l-5">*</span></h3>
+    
+    <div class="border padded-5 posrel">
+    	<select ng-model="homework.subject" ng-options="subject.subjectTitle for subject in subjectList">
+	</select>
+    </div>
+    <h3 class="padded-b-10 padded-t-20">标题<span class="text-pink padded-l-5">*</span></h3>
+    <div class="border padded-5">
+      <input type="text" ng-model="homework.homeworkTitle"  />
+    </div>
+    <h3 class="padded-b-10 padded-t-20">内容<span class="text-pink padded-l-5">*</span></h3>
+    <div class="border padded-5">
+      <textarea class="height10" ng-model="homework.homeworkContent">请输入作业内容</textarea>
+    </div>
+    
+    <div class="margin-t-15 margin-b-15 btnbox">
+    <input type="button" class="btn btn-white line-height-2" onClick="window.location='/mobile/W/homeworkList'" value="返回"/>
+    <input type="button" class="btn btn-blue line-height-2 margin-l-15" ng-click="saveHomework()" value="发布"/>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<title>美文详情</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<link rel="stylesheet" href="/public/css/main.css" />
+</head>
+
+<body  ng-controller="MainController">
+<div class="main">
+  <div class="row">
+    <div class="content padded-b-15">
+      <h2 class="text-center margin-b-15 margin-t-15">{{detail.articleTitle}}</h2>
+      <h5 class="text-center padded-b-10"><span>作者: {{detail.articleAuthor}}</span></h5>
+      <div class="padded-10">
+               {{detail.articleContent}}
+      </div>
+      	
+    </div>
+    <div class="hr"></div>
+    <div class="margin-t-15 margin-b-15 text-right">
+    <input type="button" class="btn padded-l-20 padded-r-20 btn-white" onClick="window.location='/mobile/A/articleList?type=${type}'" value="返回"/>
+    </div>
+  </div>
+</div>
+<script src="/public/widgets/layer.m/layer.m.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+<script>
+    angular.module('app', ['ngTouch'])
+            .factory('remote', ['$http', function ($http) {
+                return {
+                    save: function (notice) {
+                        return $http({
+                            method: 'GET',
+                            url: '/mobile/ActivityService/queryNoticeList',
+                            params: notice
+                        })
+                    }
+                };
+            }])
+            .controller('MainController', ['$scope', 'remote', function ($scope, remote) {
+                $scope.detail = {
+                		articleId: '${detail.articleId}',
+                		articleTitle: '${detail.articleTitle}',
+                		articleAuthor: '${detail.articleAuthor}',
+                		articleContent: '${detail.articleContent}'
+                };
+                $scope.back= function () {
+                	location.href = "/mobile/A/manager";
+                };
+            }]);
+</script>
+</body>
+</html>

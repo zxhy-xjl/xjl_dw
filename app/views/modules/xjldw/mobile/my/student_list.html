@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<title>个人信息</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<link rel="stylesheet" href="/public/css/main.css" />
+
+<script src="/public/widgets/zeptojs/zepto.min.js"></script>
+<script src="/public/widgets/dropload/dropload.min.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+ <script>
+
+        angular.module('app', ['ngTouch'])
+                .factory('agentRemote', ['$http', function ($http) {
+                    return {
+                        getData: function() {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/MyService/queryBindStudent',
+                                params: {
+                                }
+                            })
+                        },
+                        setDefaultStudent: function(studentWxId) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/MyService/setDefaultStudent',
+                                params: {
+                                	studentWxId:studentWxId
+                                }
+                            })
+                        }
+                    }
+                }])
+                .controller('MainController', ['$scope', 'agentRemote','$timeout', function ($scope, agentRemote,$timeout) {
+                    $scope.myStudents = [];
+                    $scope.studentWxId=0;
+                    $scope.studentName='${wxUser.currentStudent.studentName}';
+                    //init page function
+                    $scope.initPage = function () {
+                        agentRemote.getData().then(function (response) {
+                            $scope.myStudents = response.data.data.data;
+                            console.log($scope.myStudents);
+
+                        }, function (response) {
+                            //err
+                        });
+                    };
+                    $scope.setDefaultStudent = function(value) {
+                    	var studentWxId=value;
+                    	agentRemote.setDefaultStudent(studentWxId).then(function (response) {
+                            $scope.studentName=response.data.data.student.studentName;
+                            $scope.initPage();
+                        }, function (response) {
+                            //err
+                        });
+                    };
+                    //exec init
+                    $scope.initPage();
+                }]);
+    </script>
+</head>
+<body class="userbg" ng-cloak ng-controller="MainController">
+<div class="main bg-white border-b">
+  <div class="row">
+    <div class="padded-t-20 padded-b-20 posrel clearfix" onClick="window.location='/mobile/m/userEdit'" >
+      <div class="fl student"><img src="${wxUser.headImgUrl}"/></div>
+      <div class="fl font-size-14">
+        <div class="padded-t-5">昵称：<span class="text-auxiliary">${wxUser.nickName}</span></div>
+        <div class="padded-t-5">手机：<span class="text-auxiliary">${wxUser.wxPhone}</span></div>
+        <div class="padded-t-5">学生：<span class="text-auxiliary">{{studentName}}</span></div>
+      </div>
+      <div class="arrow"></div>
+    </div>
+  </div>
+</div>
+
+<div class="main bg-white border-t border-b margin-t-10 hide">
+  <div class="row">
+    <div class=" padded-t-15 padded-b-15 posrel clearfix " onClick="window.location='student.html'">
+      <div class="">学生管理</div>
+      <div class="arrow"></div>
+    </div>
+  </div>
+</div>
+
+<div class="main bg-white border-b margin-t-10">
+  <div class="row">
+  
+    <div class="border-b padded-t-15 padded-b-15 posrel clearfix" ng-repeat="item in myStudents ">
+      <div class="wid2 fl line-height-2 studentadd"><img src="/public/images/mobile/student.png"/></div>
+      <div class="wid80 fr line-height-2"> {{item.studentName}}
+           <span class="text-auxiliaryed padded-l-20 font-size-14">{{item.className}}</span> 
+      </div>
+      <div  ng-class="{'Y': 'now', 'N': 'nobg'}[item.isDefault]">
+      	<input type="radio" size="100" name="radio" ng-model="studentWxId"  ng-checked="item.isDefault=='Y'"
+      		ng-change="setDefaultStudent('{{item.studentWxId}}')" value="{{item.studentWxId}}" />	
+      </div>
+    </div>
+    
+    
+    <div class=" padded-t-15 padded-b-15 posrel clearfix" onClick="window.location='/mobile/m/studentAdd'">
+      <div class="wid2 fl line-height-2 studentadd"><img src="/public/images/mobile/student_add.png"/></div>
+      <div class="wid80 fr line-height-2"> <span class="text-info">添加学生</span> </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<div class="main margin-t-10">
+  <div class="row text-auxiliaryed font-size-14">您可添加学生到当前设备，方便切换使用！</div>
+</div>
+
+</body>
+</html>

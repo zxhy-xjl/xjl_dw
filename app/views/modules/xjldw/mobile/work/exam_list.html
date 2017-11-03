@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<title>成绩单</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<link rel="stylesheet" href="/public/css/main.css" />
+
+<script src="/public/widgets/zeptojs/zepto.min.js"></script>
+<script src="/public/widgets/dropload/dropload.min.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+<script>
+
+        angular.module('app', ['ngTouch'])
+                .value('appValue', {
+                    index: 1,
+                    size: 10
+                })
+                .factory('agentRemote', ['$http', 'appValue', function ($http, appValue) {
+                    return {
+                    	queryExam: function(index, size, searchText) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/WorkService/queryExam',
+                                params: {
+                                    PAGE_INDEX: index || appValue.index,
+                                    PAGE_SIZE: size || appValue.size
+                                }
+                            })
+                        }
+                    }
+                }])
+                .controller('MainController', ['$scope', 'appValue','agentRemote','$timeout', function ($scope, appValue,agentRemote,$timeout) {
+                	$scope.examTotal = 0;
+                    $scope.examList = [];
+                	//init page function
+                    $scope.initPage = function (me) {
+                		console.log("考试列表")
+                        appValue.index = 1;
+                        agentRemote.queryExam(1).then(function (response) {
+                            $scope.examTotal = response.data.data.total;
+                            $scope.examList = response.data.data.data;
+                            console.log($scope.examList);
+                            if (me && me.resetload)
+                                me.resetload();
+
+                        }, function (response) {
+                            //err
+                        });
+                	};
+                	//执行初始化方法
+                	$scope.initPage();
+                }]);
+    </script>
+</head>
+
+<body ng-cloak ng-controller="MainController">
+<div class="main">
+  <div class="row">
+    <h3 class="padded-b-10 border-b  padded-t-10 text-default">${wxUser.currentClass.className}成绩单
+      <input type="button" class="btn-blue btn fr margin-l-10" onClick="window.location='/mobile/W/examAdd'" value="公布成绩单"/>
+    </h3>
+    <div class="content">
+      <div class="clearfix posrel" ng-repeat="examInfo in examList"> 
+        <a href="/mobile/W/examDetail?examId={{examInfo.exam.examId}}">
+	        <div class=" wid70">
+	          <h3 class="padded-t-10 font-weight-b ellipsis-2 text-main"><span>{{examInfo.exam.examTitle}}</span></h3>
+	          <p class="margin-t-10 margin-b-10 font-size-13"><span class="padded-r-10">平均：{{examInfo.mma.avg}}分</span><span class="padded-r-10">最高：{{examInfo.mma.max}}分</span><span class="padded-r-10">最低：{{examInfo.mma.min}}分</span></p>
+	        </div>
+	        <div class="right-btn wid30">
+	          <img src="../images/subject_01.png" ng-show="false"/>
+	        </div>
+        </a> 
+        <div class="hr"></div>
+      </div>
+      
+      <div class="dropload-down">
+        <div class="dropload-refresh">上拉加载更多</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

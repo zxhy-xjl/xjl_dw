@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>${SYSTEM_NAME}</title>
+<link rel="shortcut icon" type="image/x-icon" href="/public/images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="/public/css/pc/normalize.css">
+<link rel="stylesheet" type="text/css" href="/public/css/pc/common.css">
+<link rel="stylesheet" type="text/css" href="/public/css/pc/jsb1.css">
+<link rel="stylesheet" type="text/css" href="/public/css/pc/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/public/css/pc/main.css">
+<link rel="stylesheet" type="text/css" href="/public/widgets/kindeditor/themes/default/default.css">
+<link rel="stylesheet" type="text/css" href="/public/widgets/select/select.css">
+<script src="/public/widgets/dist/js/libs.min.js" type="text/javascript"></script>
+<script src="/public/widgets/laydate/laydate.js" type="text/javascript"></script>
+<script src="/public/widgets/zdialog/js/zDialog.js" type="text/javascript"></script>
+<script src="/public/widgets/zdialog/js/zDrag.js" type="text/javascript"></script>
+<script src="/public/widgets/ace/js/ace.min.js" type="text/javascript"></script> 
+</head>
+<body ng-controller="RootController" style="overflow: hidden">
+<div class="header">
+    <div class="top">
+        <div class="header-logo"><a href="#home" class="font18"><img src="${PC_LOGIN_LOGO}"/></a>
+        </div>
+        <div class="header-menu">
+            <div class="header-member-information"><i class="icon_user user"></i> <a> <span>${userName}</span>
+                <span class="en_version">客户经理</span></a></div>
+                <div class="header-member-information padleft" ng-click="logout()"><i class="icon_user1 user1"></i> <a> <span>退出系统</span></a></div>
+        </div>
+        <ul class="nav">
+            <li class="on"><a href="#/home" target="_self">${SYSTEM_NAME}</a></li>
+            <li><a href="/" target="_blank">网站首页</a></li>
+        </ul>
+    </div>
+</div>
+<div class="wap">
+    <div class="container clearfix">
+        <div class="left">
+            <ul id="nav_list" class="nav-list" style="min-height: 300px;">    
+              <li class="home">
+	               <a href="#home" class="iframeurl" title="">
+	               <i class="icon-dashboard"></i><span class="menu-text"> 系统首页 </span>
+	               </a>
+                </li>
+                <li ng-repeat="menu in menus" menu-id="{{menu.menuId}}">
+                   <a ng-href="{{menu.listZzbMenu.length==0?'#'+menu.menuUrl:''}}" class="dropdown-toggle" >
+                       <i class="{{menu.menuLogo}}"></i>
+                       <span class="menu-text" ng-bind="menu.menuName"></span>
+                       <b class="arrow icon-angle-down"></b>
+                    </a>
+                     <ul class="submenu">
+							<li class="home" ng-if="item.listZzbMenu.length==0" ng-repeat="item in menu.listZzbMenu " >
+								<a class="iframeurl" ng-href="{{item.listZzbMenu.length==0?'#'+item.menuUrl:''}}">
+									<i class="icon-double-angle-right"></i><span ng-bind="item.menuName"></span>
+								</a>
+								<div  class="subnav" ng-repeat="subitem in item.listZzbMenu ">
+								     <a style="display:block" ng-href="{{'#'+subitem.menuUrl}}" ng-bind="subitem.menuName"></a>
+								</div>
+							</li>
+							 <li ng-if="item.listZzbMenu.length>0" ng-repeat="item in menu.listZzbMenu " >
+		                        <h2 class="h2subTitle">
+		                            <i class="icon-double-angle-right"></i><span ng-bind="item.menuName"></span>
+		                        </h2>
+		
+		                        <div  class="subnav" ng-repeat="subitem in item.listZzbMenu ">
+								     <a ng-href="{{'#'+subitem.menuUrl}}" menu-id="{{subitem.menuId}}">
+								        <b>&middot;</b><span ng-bind="subitem.menuName"></span>
+								     </a>
+								</div>
+                   			 </li>
+					 </ul> 
+                </li>
+            </ul>
+        </div>
+        <div class="right" style="overflow-y:auto">
+            <div ng-view>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer"  style="position: fixed;bottom: 0">
+    <p><span class="copy_con">© Copyright 2107&nbsp;&nbsp;&nbsp;&nbsp;All Rights Reserved 
+    <a style="color:#aaaaaa" href="http://www.miitbeian.gov.cn" target="_blank">${ICP}</a></span>
+   </p>
+</div>
+<script>
+    var baseUrl = '/public/modules/pc/admin';
+    var openId='oxh64jkHZeWtbUYc2AMqDc0HiJZg';
+</script>
+<script data-main="/public/modules/pc/admin/config" src="/public/widgets/requirejs/require.js"></script>
+
+</body>
+</html>

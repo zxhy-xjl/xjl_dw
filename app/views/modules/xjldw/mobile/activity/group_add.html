@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<title>团购</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport"
+	          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+	
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="yes" name="apple-touch-fullscreen" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.5.7/css/sm.min.css" />
+	<link rel="stylesheet" href="/public/css/main.css" />
+</head>
+
+<body ng-controller="MainController">
+<div class="main">
+  <div class="row padded-t-20">
+    <div class="border padded-5">
+      <input type="text" placeholder="请输入团购标题" ng-model="groupInfo.groupBuyTitle"  />
+    </div>
+    <div class="margin-t-10 bgdefault padded-t-5 padded-r-10 padded-b-10 padded-l-10" ng-repeat="item in groupItems">
+         <span>{{item.groupItemTitle}}</span><span class="margin-l-10 text-auxiliary">￥{{item.groupItemPrice}}</span>
+         <input type="button" value="X" ng-click="itemDel($index)" class="fr btn bg-default text-default"/>
+    </div>
+    <div class="padded-t-5 padded-b-5 margin-b-15 margin-t-10 clearfix">
+      <div class="fl wid60 border padded-l-5">
+         <input type="text"  placeholder="名称" ng-model="groupInfo.groupItemTitle" />
+    </div>
+    <div class="fl wid20 border padded-l-5 margin-l-5">
+         <input type="text"  placeholder="价格" ng-model="groupInfo.groupItemPrice" />
+     </div>
+     <div class="fr wid15">
+            <input type="button" class="btn fr bg-info" ng-click="itemAdd()" value="添加" />
+      </div>
+    </div>
+    <div class="margin-10"><span>合计：</span><span>{{groupItems.length}}个,</span><span class="margin-l-10">共{{groupItemsTotal}}元</span></div>
+    <div class="margin-10 clearfix"><span class="fl">结束时间：</span>
+         <div class="border padded-l-5 wid60 fl">
+               <input type="text" id="datetime-picker1" style="cursor:pointer;" />
+          </div>
+    </div>
+    <div class="margin-t-15 margin-b-15 btnbox">
+    <input type="button" class="btn btn-white line-height-2" onClick="window.location='/mobile/A/groupList'" value="取消"/>
+    <input type="button" class="btn btn-blue line-height-2 margin-l-15" ng-click="save()" value="发布"/>
+    </div>
+  </div>
+</div>
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.5.7/js/sm.min.js' charset='utf-8'></script>
+ <script src="//cdn.bootcss.com/moment.js/2.10.6/moment-with-locales.min.js"></script>
+<script src="/public/widgets/layer.m/layer.m.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+<script>
+    angular.module('app', ['ngTouch'])
+           .factory('valid', function () {
+                return {
+                	groupInfo: function (obj) {
+	                        if (obj.groupBuyTitle == '') {
+	                            return {flag: false, msg: '团购标题不能为空'}
+	                        }
+	                        if (obj.groupBuyEndTime == '') {
+	                            return {flag: false, msg: '截止时间不能为空'}
+	                        }
+	                        if (obj.groupItems.length<=0) {
+	                            return {flag: false, msg: '至少添加一项团购条目'}
+	                        }
+	                        return {flag: true, msg: '验证通过'};
+	                    }                    
+                 }//end return
+            })
+            .factory('remote', ['$http', function ($http) {
+                return {
+                	saveGroupBuy: function (article) {
+                        return $http({
+                            method: 'GET',
+                            url: '/mobile/ActivityService/saveGropuBuy',
+                            params: article
+                        })
+                    }
+                };
+            }])
+            .controller('MainController', ['$scope','valid', 'remote','$http', function ($scope,valid,remote,$http) {
+                var $date1 = $("#datetime-picker1").datetimePicker({}).val(moment().add(1, 'days').format('YYYY-MM-DD HH:mm'));
+            	$scope.groupItemsTotal=0;
+            	$scope.groupItems=[];
+                $scope.groupInfo = {
+                		groupBuyId: '',
+                		groupBuyTitle: '',
+                		groupBuyEndTime: '',
+                		groupItemPrice: '',
+                		groupItemTitle: '',
+                		groupItems:$scope.groupItems
+                };
+                $scope.itemAdd=function(){
+                	var item={
+                			groupItemPrice:$scope.groupInfo.groupItemPrice,
+                			groupItemTitle:$scope.groupInfo.groupItemTitle
+                	}
+                	$scope.groupItems.push(item);
+                	var total=0;
+                	for (var i=0;i<$scope.groupItems.length;i++) {
+                		total +=parseFloat($scope.groupItems[i].groupItemPrice);
+                    }
+                	$scope.groupItemsTotal=total;
+                	$scope.groupInfo.groupItemPrice="";
+                	$scope.groupInfo.groupItemTitle="";
+                };
+                $scope.itemDel=function(index){
+                	$scope.groupItems.splice(index);
+                	var total=0;
+                	for (var i=0;i<$scope.groupItems.length;i++) {
+                		total +=parseFloat($scope.groupItems[i].groupItemPrice);
+                    }
+                	$scope.groupItemsTotal=total;
+                };
+                $scope.save= function () {
+                    $scope.groupInfo.groupBuyEndTime = moment($date1.val()).format('YYYY-MM-DD HH:mm:ss');
+                    var validRes = valid.groupInfo($scope.groupInfo);
+                    if (validRes.flag) {
+                        var index = layer.open({
+                            type: 2,
+                            shadeClose: false,
+                            content: '提交中'
+                        });
+                        remote.saveGroupBuy($scope.groupInfo)
+                                .then(function (res) {
+                                    if (res.data.ret=='-1') {
+                                        layer.open({
+                                            content: res.data.desc,
+                                            btn: ['知道了']
+                                        });
+                                    }
+                                    else {
+                                        layer.open({
+                                            content: "发布成功",
+                                            btn: ['确定'],
+                                            end: function () {
+                                            	$scope.article = res.data.data;
+                                                console.log($scope.article);
+                                                location.href = "/mobile/A/groupList";
+                                            }
+                                        });
+                                    }
+                                }, function () {
+                                    layer.open({
+                                        content: '提交异常',
+                                        btn: ['知道了']
+                                    });
+
+                                }).finally(function () {
+                                    layer.close(index);
+                                });
+                    } else {
+                        layer.open({
+                            content: validRes.msg,
+                            btn: ['知道了']
+                        });
+                    }
+                };
+                $scope.back= function () {
+                	var type="list";
+                	if($scope.article.articleId!=""){
+                		type="check";
+                	}
+                	location.href = "/mobile/A/articleList?type="+type;
+                };
+
+            }]);
+</script>
+</body>
+</html>

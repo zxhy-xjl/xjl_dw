@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<title>作业添加标榜</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<link rel="stylesheet" href="/public/css/main.css" />
+
+<script src="/public/widgets/zeptojs/zepto.min.js"></script>
+<script src="/public/widgets/dropload/dropload.min.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+<script>
+
+        angular.module('app', ['ngTouch'])
+                .value('appValue', {
+                    index: 1,
+                    size: 10
+                })
+                .factory('agentRemote', ['$http', 'appValue', function ($http, appValue) {
+                    return {
+                    	saveRemark: function(remark) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/WorkService/saveHomeworkRemark',
+                                params: {
+                                	remark:remark
+                                }
+                            })
+                        }
+                        
+                    }
+                }])
+                .controller('MainController', ['$scope', 'appValue','agentRemote','$timeout', function ($scope, appValue,agentRemote,$timeout) {
+                	//init page function
+                	$scope.remark = {
+                			homeworkId:'',
+                			remark:'',
+                			image:''
+                	};
+                    $scope.initPage = function (me) {
+                		console.log("初始化标榜");
+                		$scope.remark.homeworkId=${homeworkId};
+                    };
+                    $scope.initPage();
+                    $scope.saveRemark = function(){
+                    	agentRemote.saveRemark($scope.remark).then(function (response) {
+                            console.log("response",response);
+                            window.location = "/mobile/W/homeworkDetail?homeworkId=${homeworkId}";
+                        }, function (response) {
+                            //err
+                        });
+                    }
+                }]);
+    </script>
+</head>
+<body  ng-cloak ng-controller="MainController">
+<div class="main">
+  <div class="row">
+    <h3 class="padded-b-10 padded-t-20">标榜图<span class="text-pink padded-l-5">*</span></h3>
+    <div class="padded-5 btnbox">
+       <input type="button" value="拍照上传" class="btn btn-white"/>
+    </div>
+    <h3 class="padded-b-10 padded-t-20">评语<span class="text-pink padded-l-5">*</span></h3>
+    <div class="border padded-5">
+    	<textarea class="height5" ng-model="remark.remark">请输入评语</textarea>
+    </div>
+    <h3 class="padded-b-10 padded-t-20" ng-show="false">学生<span class="text-pink padded-l-5">*</span></h3>
+    <div class="border padded-5 posrel"  ng-show="false"><span>选择学生</span><div class="tabbtn wid2 top0"><img src="../images/down.png" /></div>
+    </div>
+    <div class="margin-t-15 margin-b-15 btnbox">
+	    <input type="button" class="btn btn-white line-height-2" onClick="window.location='/mobile/W/homeworkDetail?homeworkId=${homeworkId}'" value="取消"/>
+	    <input type="button" class="btn btn-blue line-height-2 margin-l-15" ng-click="saveRemark()" value="发布标榜"/>
+    </div>
+  </div>
+</div>
+</body>
+</html>

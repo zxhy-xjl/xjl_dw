@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<title>相册</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<link rel="stylesheet" href="/public/css/main.css" />
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/public/widgets/zeptojs/zepto.min.js"></script>
+<script src="/public/widgets/layer.m/layer.m.js"></script>
+<!--  <script src="/public/widgets/dropload/dropload.min.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>-->
+</head>
+<body ng-cloak ng-controller="MainController">
+<div class="main">
+  <div class="row">
+  <div class="btnbox padded-t-20 padded-b-20">
+     <span id="uploadLogo"><img src="/public/images/mobile/file01.png"  /></span>
+  <a href="file_add_image_1.html" class="btn btn-blue margin-r-10 line-height-2">上传图片</a>
+  <a href="file_add.html" class="btn btn-blue margin-l-10 line-height-2">制作新相册</a>
+  </div>
+  <!--模板一：最多显示4张照片-->
+  <div class="clearfix mb6"  onClick="window.location='filedetail.html'">
+  	<div class="title">青春的记忆</div>
+    <div class="mbmdl clearfix">
+    <div class="file"><img src="/public/images/mobile/file01.png"/></div>
+    </div>
+    <div class="mbbtm"></div>
+  </div>
+  <div class="btnbox padded-b-20 border-b margin-b-15">
+  <a href="file_add.html" class="btn btn-blue margin-r-10 line-height-2">编辑</a>
+  <a href="index.html" class="btn btn-white margin-l-10 line-height-2">删除</a>
+  </div>
+  
+  <!--模板一：最多显示4张照片-->
+  <div class="clearfix mb1"  onClick="window.location='filedetail.html'">
+  	<div class="title">学期优秀汇总</div>
+    <div class="mbmdl clearfix">
+    <div class="file"><img src="/public/images/mobile/file01.png"/></div>
+    <div class="file"><img src="/public/images/mobile/file01.png"/></div>
+    <div class="file"><img src="/public/images/mobile/file01.png"/></div>
+    <div class="file"><img src="/public/images/mobile/file01.png"/></div>
+    </div>
+    <div class="mbbtm"></div>
+  </div>
+  
+
+  
+  <div class="clearfix mb5">
+  	<div class="title">那些年，我们一起站过的军姿</div>
+    <div class="mbmdl clearfix">
+    <div class="file"><img src="/public/images/mobile/file01.png"/></div>
+    </div>
+    <div class="mbbtm"></div>
+  </div>
+  <!--模板二：最多显示4张照片-->
+  <div class="clearfix mb2">
+  	<div class="title">学期优秀汇总</div>
+    <div class="mbmdl clearfix">
+    <div class="file"><img src="/public/images/mobile/file01.png"/></div>
+    <div class="file"><img src="/public/images/mobile/file01.png"/></div>
+    <div class="file"><img src="/public/images/mobile/file.png"/></div>
+    <div class="file"><img src="/public/images/mobile/file01.png"/></div>
+    </div>
+    <div class="mbbtm"></div>
+  </div>
+  <div class="clearfix mb4">
+  	<div class="title">第一次学雷锋纪念册</div>
+    <div class="mbmdl clearfix">
+    <div class="file"><img src="/public/images/mobile/file01.png"/></div>
+    </div>
+    <div class="mbbtm"></div>
+  </div>
+  
+  </div>
+</div>
+<script>
+    var openId = 'oxh64jkHZeWtbUYc2AMqDc0HiJZg',
+            vnoId = '1';
+</script>
+<script>
+
+    //暂时用jquery做处理 后面用zepto的touch模块
+    $(function () {
+        var url = window.location.href.split('#')[0];
+        alert(url);
+
+        var ajaxReturn = $.ajax({url:"/Weixin/getWxSdkInfo", data: {url: url,openId:openId,vnoId:vnoId}});
+        ajaxReturn.done(function (data) {
+            var appId = data.appId,
+                    signature = data.signature,
+                    timestamp = data.timestamp,
+                    nonce = data.nonce;
+            wx.config({
+                debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: appId, // 必填，公众号的唯一标识
+                timestamp: timestamp, // 必填，生成签名的时间戳
+                nonceStr: nonce, // 必填，生成签名的随机串
+                signature: signature,// 必填，签名，见附录1
+                jsApiList: ['chooseImage', 'uploadImage', 'closeWindow', 'previewImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+            });
+
+            wx.ready(function () {
+                //认证成功后进行相应的操作
+
+
+                $('#uploadLogo').on('tap', function () {
+
+                    wx.chooseImage({
+                        count: 1,
+                        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                        success: function (res) {
+                            var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                            wx.uploadImage({
+                                localId: localIds[0],
+                                isShowProgressTips: 1,
+                                success: function (res) {
+                                    var serverId = res.serverId; // 返回图片的服务器端ID
+                                    $.ajax({url:'/mobile/A/uploadLogo',data:{
+                                        url:serverId,openId:openId,oldFileDelete: $('#uploadLogo').find('img').attr('src')
+                                    }}).done(function(res){
+                                        if (res.ret=="0"&&res.data) {
+                                            $('#uploadLogo').find('img').attr('src',res.data);
+                                        }else{
+                                        	//上传失败
+                                        	layer.open({
+                                                content: res.desc,
+                                                btn: ['知道了']
+                                            });
+                                        }
+                                    }).fail(function(){
+                                        layer.open({
+                                            content: '上传失败,请稍后再试',
+                                            btn: ['知道了']
+                                        });
+                                    })
+
+                                },
+                                error: function () {
+                                    layer.open({
+                                        content: '上传失败,请稍后再试',
+                                        btn: ['知道了']
+                                    });
+                                }
+                            });
+
+                        }
+                    });
+
+                });
+
+
+            });
+            wx.error(function (res) {
+                console.info(res);
+                //$.tips({
+                //    content: '微信认证失败',
+                //    stayTime: 2000,
+                //    type: "warn"
+                //})
+                layer.open({
+                    content: '微信认证失败',
+                    btn: ['知道了']
+                });
+            });
+
+
+        }).fail(function (e) {
+            //$.tips({
+            //    content: '请求异常',
+            //    stayTime: 2000,
+            //    type: "warn"
+            //})
+            alert('请求异常');
+        });
+        //refresh logo
+        $.ajax({
+            url: '/mobile/ActivityService/getLogo', data: {
+                fileId: '${fileId}'
+            }
+        }).done(function (res) {
+            console.log(res);
+            if (res.data.custManagerFace) {
+                $('#uploadLogo').find('img').attr('src',res.data.custManagerFace);
+            }
+        });
+    });
+</script>
+</body>
+</html>

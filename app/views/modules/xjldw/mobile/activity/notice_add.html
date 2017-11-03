@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+	<title>通知公告</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport"
+	          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+	
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="yes" name="apple-touch-fullscreen" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<link rel="stylesheet" href="/public/css/main.css" />
+</head>
+
+<body ng-controller="MainController">
+<div class="main">
+  <div class="row">
+    <h3 class="padded-b-10 padded-t-20">标题<span class="text-pink padded-l-5">*</span></h3>
+    <div class="border padded-5">
+    <input type="text" placeholder="请输入标题" ng-model="notice.noticeTitle" />
+    </div>
+    <h3 class="padded-b-10 padded-t-20">内容<span class="text-pink padded-l-5">*</span></h3>
+    <div class="border padded-5">
+    <textarea class="height10" placeholder="请输入发布内容"  ng-model="notice.noticeContent"></textarea>
+    </div>
+    <div class="margin-t-15 margin-b-15">
+    <input type="button" class="btn btn-white fl wid45 line-height-2" ng-click="back()" value="返回"/>
+    <input type="button" class="btn btn-blue fr wid45 line-height-2" ng-click="save()" value="发布"/>
+    </div>
+  </div>
+</div>
+ <script src="/public/widgets/layer.m/layer.m.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+<script>
+    angular.module('app', ['ngTouch'])
+           .factory('valid', function () {
+                return {
+                	   noticeInfo: function (obj) {
+	                        if (obj.noticeTitle == '') {
+	                            return {flag: false, msg: '通知标题不能为空'}
+	                        }
+	                        if (obj.noticeContent == '') {
+	                            return {flag: false, msg: '通知内容不能为空'}
+	                        }
+	                        return {flag: true, msg: '验证通过'};
+	                    }                    
+                 }//end return
+            })
+            .factory('remote', ['$http', function ($http) {
+                return {
+                    saveNotice: function (notice) {
+                        return $http({
+                            method: 'GET',
+                            url: '/mobile/ActivityService/saveNotice',
+                            params: notice
+                        })
+                    }
+                };
+            }])
+            .controller('MainController', ['$scope','valid', 'remote','$http', function ($scope,valid,remote,$http) {
+                $scope.notice = {
+                		noticeId: '',
+                		noticeTitle: '',
+                		noticeContent: ''
+                };
+                $scope.save= function () {
+                    var validRes = valid.noticeInfo($scope.notice);
+                    if (validRes.flag) {
+                        var index = layer.open({
+                            type: 2,
+                            shadeClose: false,
+                            content: '提交中'
+                        });
+                        remote.saveNotice($scope.notice)
+                                .then(function (res) {
+                                    if (res.data.ret == '-1') {
+                                        layer.open({
+                                            content: res.data.desc,
+                                            btn: ['知道了']
+                                        });
+                                    }
+                                    else {
+                                        $scope.notice = res.data.data;
+                                        console.log($scope.notice);
+                                        layer.open({
+                                            content: '发布成功',
+                                            btn: ['确定'],
+                                            end: function () {
+                                                location.href = "/mobile/A/manager";
+                                            }
+                                        });
+                                    }
+                                }, function () {
+                                    layer.open({
+                                        content: '提交异常',
+                                        btn: ['知道了']
+                                    });
+
+                                }).finally(function () {
+                                    layer.close(index);
+                                });
+                    } else {
+                        layer.open({
+                            content: validRes.msg,
+                            btn: ['知道了']
+                        });
+                    }
+                };
+                $scope.back= function () {
+                	location.href = "/mobile/A/manager";
+                };
+
+            }]);
+</script>
+</body>
+</html>

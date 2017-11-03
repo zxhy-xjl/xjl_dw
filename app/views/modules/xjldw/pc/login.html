@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>班级微信号管理平台</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/public/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/public/css/pc/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/css/pc/login.css"/>
+      <script src="/public/js/jquery-1.9.1.min.js"></script>
+</head>
+
+<body style="background:#f6f6f6;">
+<div class="wrap clearfix" style="padding-top:20px; ">
+    <div class="Login_header">
+        <div class="nav_logo">
+            <div class="logo"><img alt="logo" src="/public/images/pc/pc_login_logo.jpg"></div>
+        </div>
+    </div>
+</div>
+<div class="wrap clearfix" style="background:#64ccff">
+    <div class="newtopit clearfix">
+        <div class="banner">
+            <!-- 幻灯片广告位 start -->
+            <div class="ad">
+                <div class="flashBanner">
+                    <div class="slides">
+                    <a>
+                        <div class="ad_contetnt"><img src="/public/images/pc/pc_login_slides.jpg"/>
+                            <div class="ad_title"></div>
+                        </div>
+                    </a> 
+                    </div>
+                </div>
+            </div>
+            <!-- 幻灯片广告位 end -->
+        </div>
+        <div class="newtopit_box shadow">
+            <form action="@{LoginService.login}" method="post">
+                <div class="login_pc ">
+                    <div class="items " id="login">
+                        <div class="item_box_title blue">班级微信号管理平台</div>
+                        <div class="tip"><span id="error"></span></div>
+                        <div class="item_box clearfix">
+                            <div class="item_tel">
+                                <input id="PHONE" name="usercode" type="text" placeholder="请输入手机号" value=""/>
+                            </div>
+                        </div>
+                        <div class="item_box">
+                            <div class="item_pass">
+                                <input type="password" name="passwd" placeholder="请输入密码" autocomplete="off"/>
+                            </div>
+                        </div>
+                        <div class="rticle" style="display:none;">&nbsp;
+                            <input id="chk_protocol" type="checkbox" checked>
+                            <label for="chk_protocol">记住密码</label>
+                          </div>
+                        <div class="item_box">
+                            <input type="hidden" name="flag" value="PC"/>
+                            <input type="submit" name="btnLogin" class="Login_btn"
+                                   value="登&nbsp;录"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="wap login_footer">© Copyright ${YEAR==null?'2016':YEAR}&nbsp;&nbsp;${TECHNICAL_SUPPORT}&nbsp;&nbsp;All Rights Reserved <a style="color:#aaaaaa" href="http://www.miitbeian.gov.cn" target="_blank">${ICP}</a> &nbsp;&nbsp;QQ：${ONLINE_QQ}</div>
+<script>
+    #{if flash.error}
+    $("#error").text("${flash.error}");
+    #{/if}
+</script>
+</body>
+</html>

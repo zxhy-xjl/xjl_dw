@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+   	<title>美文投稿</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport"
+	          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+	
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="yes" name="apple-touch-fullscreen" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<link rel="stylesheet" href="/public/css/main.css" />
+</head>
+
+<body ng-controller="MainController">
+<div class="main">
+  <div class="row">
+    <h3 class="padded-b-10 padded-t-20">标题<span class="text-pink padded-l-5">*</span></h3>
+    <div class="border padded-5">
+	     <input type="text" placeholder="请输入标题" ng-model="article.articleTitle" />
+    </div>
+    <h3 class="padded-b-10 padded-t-20">内容<span class="text-pink padded-l-5">*</span></h3>
+    <div class="border padded-5">
+          <textarea class="height10" placeholder="请输入投稿内容"  ng-model="article.articleContent"></textarea>
+    </div>
+    <h3 class="padded-b-10 padded-t-20">作者<span class="text-pink padded-l-5">*</span></h3>
+    <div class="border padded-5" ng-class="{bgdefault:article.articleId!=''}">
+      <input type="text" placeholder="请昵称" ng-model="article.articleAuthor" ng-disabled="article.articleId!=''" />
+    </div>
+    <div class="margin-t-15 margin-b-15 btnbox">
+   		 <input type="button" class="btn btn-white fl line-height-2" value="返回"
+   		       ng-click="back()" />
+   		 <input type="button" class="btn btn-blue line-height-2 margin-l-15" 
+   		        ng-show="article.articleId==''" ng-click="save(0)" value="投稿"/>
+         <input type="button" class="btn btn-blue fr line-height-2 margin-l-15"
+        		ng-show="article.articleId!=''" ng-click="save(2)" value="暂不发布"/>
+  		 <input type="button" class="btn btn-blue fr line-height-2 margin-l-15" 
+  		        ng-show="article.articleId!=''" ng-click="save(1)" value="发表"/>
+    </div>
+  </div>
+</div>
+ <script src="/public/widgets/layer.m/layer.m.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+<script>
+    angular.module('app', ['ngTouch'])
+           .factory('valid', function () {
+                return {
+                	articleInfo: function (obj) {
+	                        if (obj.articleTitle == '') {
+	                            return {flag: false, msg: '标题不能为空'}
+	                        }
+	                        if (obj.articleContent == '') {
+	                            return {flag: false, msg: '投稿内容不能为空'}
+	                        }
+	                        if (obj.articleAuthor== '') {
+	                            return {flag: false, msg: '作者不能为空'}
+	                        }
+	                        return {flag: true, msg: '验证通过'};
+	                    }                    
+                 }//end return
+            })
+            .factory('remote', ['$http', function ($http) {
+                return {
+                    saveArticle: function (article) {
+                        return $http({
+                            method: 'GET',
+                            url: '/mobile/ActivityService/saveArticle',
+                            params: article
+                        })
+                    }
+                };
+            }])
+            .controller('MainController', ['$scope','valid', 'remote','$http', function ($scope,valid,remote,$http) {
+                $scope.article = {
+                		articleId: '${article.articleId}',
+                		articleTitle: '${article.articleTitle}',
+                		articleContent: '${article.articleContent}',
+                		articleAuthor:'${article.articleAuthor}',
+                		articleState:'${article.articleState}'
+                };
+                $scope.save= function (state) {
+                    var validRes = valid.articleInfo($scope.article);
+                    if (validRes.flag) {
+                        var index = layer.open({
+                            type: 2,
+                            shadeClose: false,
+                            content: '提交中'
+                        });
+                        $scope.article.articleState=state;
+                        var content="投稿成功";
+                        var type="list";
+                        switch (state) {
+                        case 0:
+                        	content="投稿成功";
+                        	type="list";
+                        	break;
+                        case 1:
+                        	content="发表成功";
+                        	type="check";
+                        	break;
+                        case 2:
+                        	content="审批成功!";
+                        	type="check";
+                        	break;
+                        }
+                        remote.saveArticle($scope.article)
+                                .then(function (res) {
+                                    if (res.data.ret=='-1') {
+                                        layer.open({
+                                            content: res.data.desc,
+                                            btn: ['知道了']
+                                        });
+                                    }
+                                    else {
+                                        layer.open({
+                                            content: content,
+                                            btn: ['确定'],
+                                            end: function () {
+                                            	$scope.article = res.data.data;
+                                                console.log($scope.article);
+                                                location.href = "/mobile/A/articleList?type="+type;
+                                            }
+                                        });
+                                    }
+                                }, function () {
+                                    layer.open({
+                                        content: '提交异常',
+                                        btn: ['知道了']
+                                    });
+
+                                }).finally(function () {
+                                    layer.close(index);
+                                });
+                    } else {
+                        layer.open({
+                            content: validRes.msg,
+                            btn: ['知道了']
+                        });
+                    }
+                };
+                $scope.back= function () {
+                	var type="list";
+                	if($scope.article.articleId!=""){
+                		type="check";
+                	}
+                	location.href = "/mobile/A/articleList?type="+type;
+                };
+
+            }]);
+</script>
+</body>
+</html>

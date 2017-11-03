@@ -1,0 +1,342 @@
+ 2017-11-03 10:25:02  INFO  play                 ~ Starting /Users/Arthur/xjl_dw
+ 2017-11-03 10:25:02  WARN  play                 ~ You're running Play! in DEV mode
+ 2017-11-03 10:25:02  INFO  play                 ~ Listening for HTTP on port 8089 (Waiting a first request to start) ...
+ 2017-11-03 10:25:59  INFO  com.mchange.v2.log.MLog ~ MLog clients using log4j logging.
+ 2017-11-03 10:25:59  INFO  com.mchange.v2.c3p0.C3P0Registry ~ Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+ 2017-11-03 10:25:59  INFO  com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource ~ Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hge75o9rzfjwe11ns6m2n|3c92c31f, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hge75o9rzfjwe11ns6m2n|3c92c31f, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:postgresql://121.43.37.149/xjl_dw, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+ 2017-11-03 10:25:59  INFO  play                 ~ Connected to jdbc:postgresql://121.43.37.149/xjl_dw for default
+ 2017-11-03 10:26:00  INFO  org.hibernate.annotations.common.Version ~ HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+ 2017-11-03 10:26:00  INFO  org.hibernate.Version ~ HHH000412: Hibernate Core {4.2.19.Final}
+ 2017-11-03 10:26:00  INFO  org.hibernate.cfg.Environment ~ HHH000206: hibernate.properties not found
+ 2017-11-03 10:26:00  INFO  org.hibernate.cfg.Environment ~ HHH000021: Bytecode provider name : javassist
+ 2017-11-03 10:26:00  INFO  org.hibernate.service.jdbc.connections.internal.ConnectionProviderInitiator ~ HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+ 2017-11-03 10:26:11  INFO  org.hibernate.dialect.Dialect ~ HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+ 2017-11-03 10:26:11  INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder ~ HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+ 2017-11-03 10:26:12  INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator ~ HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+ 2017-11-03 10:26:12  INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory ~ HHH000397: Using ASTQueryTranslatorFactory
+ 2017-11-03 10:26:12  INFO  org.hibernate.validator.util.Version ~ Hibernate Validator 4.1.0.Final
+ 2017-11-03 10:26:12  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 10:26:12  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 10:26:12  WARN  play                 ~ Messages file missing for locale en
+ 2017-11-03 10:26:12  WARN  play                 ~ Messages file missing for locale zh
+ 2017-11-03 10:26:12  INFO  play                 ~ Application 'xjl_dw' is now started !
+ 2017-11-03 10:32:58  INFO  play                 ~ Starting /Users/Arthur/xjl_dw
+ 2017-11-03 10:32:58  WARN  play                 ~ You're running Play! in DEV mode
+ 2017-11-03 10:32:58  INFO  play                 ~ Listening for HTTP on port 8089 (Waiting a first request to start) ...
+ 2017-11-03 10:33:05  INFO  com.mchange.v2.log.MLog ~ MLog clients using log4j logging.
+ 2017-11-03 10:33:05  INFO  com.mchange.v2.c3p0.C3P0Registry ~ Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+ 2017-11-03 10:33:05  INFO  com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource ~ Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hge75o9rzft0je1l4rx47|10bd6045, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hge75o9rzft0je1l4rx47|10bd6045, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:postgresql://121.43.37.149/xjl_dw, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+ 2017-11-03 10:33:05  INFO  play                 ~ Connected to jdbc:postgresql://121.43.37.149/xjl_dw for default
+ 2017-11-03 10:33:05  INFO  org.hibernate.annotations.common.Version ~ HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+ 2017-11-03 10:33:05  INFO  org.hibernate.Version ~ HHH000412: Hibernate Core {4.2.19.Final}
+ 2017-11-03 10:33:05  INFO  org.hibernate.cfg.Environment ~ HHH000206: hibernate.properties not found
+ 2017-11-03 10:33:05  INFO  org.hibernate.cfg.Environment ~ HHH000021: Bytecode provider name : javassist
+ 2017-11-03 10:33:05  INFO  org.hibernate.service.jdbc.connections.internal.ConnectionProviderInitiator ~ HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+ 2017-11-03 10:33:18  INFO  org.hibernate.dialect.Dialect ~ HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+ 2017-11-03 10:33:18  INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder ~ HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+ 2017-11-03 10:33:18  INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator ~ HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+ 2017-11-03 10:33:18  INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory ~ HHH000397: Using ASTQueryTranslatorFactory
+ 2017-11-03 10:33:18  INFO  org.hibernate.validator.util.Version ~ Hibernate Validator 4.1.0.Final
+ 2017-11-03 10:33:18  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 10:33:18  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 10:33:18  WARN  play                 ~ Messages file missing for locale en
+ 2017-11-03 10:33:18  WARN  play                 ~ Messages file missing for locale zh
+ 2017-11-03 10:33:18  INFO  play                 ~ Application 'xjl_dw' is now started !
+ 2017-11-03 10:33:47  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from wx_user a where 1=1  limit ?
+ 2017-11-03 10:33:47  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from wx_user a where 1=1 
+ 2017-11-03 10:33:47  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_wx_student a where a.status='0AA' and is_default='Y' and wx_open_id='oxh64jkHZeWtbUYc2AMqDc0HiJZg'
+ 2017-11-03 10:33:47  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_student a  where a.student_id= ? 
+ 2017-11-03 10:33:47  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_class a where a.class_id= ?
+ 2017-11-03 10:33:47  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_parent_committee a where status='0AA'   and class_id=?   and wx_open_id=?
+ 2017-11-03 10:33:47  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:33:47  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:33:47  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_notice a order by a.notice_id desc limit ?
+ 2017-11-03 10:33:47  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_notice a 
+ 2017-11-03 10:35:25  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from wx_user a where 1=1  limit ?
+ 2017-11-03 10:35:25  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from wx_user a where 1=1 
+ 2017-11-03 10:35:25  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_wx_student a where a.status='0AA' and is_default='Y' and wx_open_id='oxh64jkHZeWtbUYc2AMqDc0HiJZg'
+ 2017-11-03 10:35:25  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_student a  where a.student_id= ? 
+ 2017-11-03 10:35:25  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_class a where a.class_id= ?
+ 2017-11-03 10:35:25  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_parent_committee a where status='0AA'   and class_id=?   and wx_open_id=?
+ 2017-11-03 10:35:25  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:35:25  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:35:25  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_notice a order by a.notice_id desc limit ?
+ 2017-11-03 10:35:25  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_notice a 
+ 2017-11-03 10:35:36  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:35:36  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:35:36  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_notice a order by a.notice_id desc limit ?
+ 2017-11-03 10:35:36  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_notice a 
+ 2017-11-03 10:35:39  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:35:39  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:35:39  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_notice a order by a.notice_id desc limit ?
+ 2017-11-03 10:35:39  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_notice a 
+ 2017-11-03 10:36:35  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:36:35  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:36:35  INFO  play                 ~ ----------------appIdappIdappId:wx5f29a981bf8c03c2
+ 2017-11-03 10:36:35  INFO  play                 ~ ----------------url:http://localhost/mobile/A/noticeList?flag=testPC
+ 2017-11-03 10:36:35  INFO  play                 ~ ===========redirectURL=========== null
+ 2017-11-03 10:36:52  INFO  play                 ~ ----------------appIdappIdappId:wx5f29a981bf8c03c2
+ 2017-11-03 10:36:52  INFO  play                 ~ ----------------url:http://localhost/mobile/A/groupList?flag=testPC
+ 2017-11-03 10:36:52  INFO  play                 ~ ===========redirectURL=========== null
+ 2017-11-03 10:38:43  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:38:44  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:38:44  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 10:41:22  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:41:22  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:41:22  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 10:41:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:41:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:41:29  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 10:41:46  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from wx_user a where 1=1  limit ?
+ 2017-11-03 10:41:46  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from wx_user a where 1=1 
+ 2017-11-03 10:41:46  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_wx_student a where a.status='0AA' and is_default='Y' and wx_open_id='oxh64jkHZeWtbUYc2AMqDc0HiJZg'
+ 2017-11-03 10:41:46  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_student a  where a.student_id= ? 
+ 2017-11-03 10:41:46  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_class a where a.class_id= ?
+ 2017-11-03 10:41:46  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_parent_committee a where status='0AA'   and class_id=?   and wx_open_id=?
+ 2017-11-03 10:41:46  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:41:47  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:41:47  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_notice a order by a.notice_id desc limit ?
+ 2017-11-03 10:41:47  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_notice a 
+ 2017-11-03 10:42:45  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from wx_user a where 1=1  limit ?
+ 2017-11-03 10:42:45  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from wx_user a where 1=1 
+ 2017-11-03 10:42:45  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_wx_student a where a.status='0AA' and is_default='Y' and wx_open_id='oxh64jkHZeWtbUYc2AMqDc0HiJZg'
+ 2017-11-03 10:42:45  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_student a  where a.student_id= ? 
+ 2017-11-03 10:42:45  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_class a where a.class_id= ?
+ 2017-11-03 10:42:45  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_parent_committee a where status='0AA'   and class_id=?   and wx_open_id=?
+ 2017-11-03 10:42:45  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:42:45  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:42:45  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_notice a order by a.notice_id desc limit ?
+ 2017-11-03 10:42:46  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_notice a 
+ 2017-11-03 10:43:02  INFO  play                 ~ Starting /Users/Arthur/xjl_dw
+ 2017-11-03 10:43:03  WARN  play                 ~ You're running Play! in DEV mode
+ 2017-11-03 10:43:03  INFO  play                 ~ Listening for HTTP on port 8089 (Waiting a first request to start) ...
+ 2017-11-03 10:43:11  INFO  com.mchange.v2.log.MLog ~ MLog clients using log4j logging.
+ 2017-11-03 10:43:11  INFO  com.mchange.v2.c3p0.C3P0Registry ~ Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+ 2017-11-03 10:43:11  INFO  com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource ~ Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hge75o9rzg60dikjlx2a|732a0a30, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hge75o9rzg60dikjlx2a|732a0a30, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:postgresql://121.43.37.149/xjl_dw, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+ 2017-11-03 10:43:11  INFO  play                 ~ Connected to jdbc:postgresql://121.43.37.149/xjl_dw for default
+ 2017-11-03 10:43:11  INFO  org.hibernate.annotations.common.Version ~ HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+ 2017-11-03 10:43:11  INFO  org.hibernate.Version ~ HHH000412: Hibernate Core {4.2.19.Final}
+ 2017-11-03 10:43:11  INFO  org.hibernate.cfg.Environment ~ HHH000206: hibernate.properties not found
+ 2017-11-03 10:43:11  INFO  org.hibernate.cfg.Environment ~ HHH000021: Bytecode provider name : javassist
+ 2017-11-03 10:43:11  INFO  org.hibernate.service.jdbc.connections.internal.ConnectionProviderInitiator ~ HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+ 2017-11-03 10:43:23  INFO  org.hibernate.dialect.Dialect ~ HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+ 2017-11-03 10:43:23  INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder ~ HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+ 2017-11-03 10:43:23  INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator ~ HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+ 2017-11-03 10:43:23  INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory ~ HHH000397: Using ASTQueryTranslatorFactory
+ 2017-11-03 10:43:23  INFO  org.hibernate.validator.util.Version ~ Hibernate Validator 4.1.0.Final
+ 2017-11-03 10:43:23  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 10:43:23  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 10:43:24  WARN  play                 ~ Messages file missing for locale en
+ 2017-11-03 10:43:24  WARN  play                 ~ Messages file missing for locale zh
+ 2017-11-03 10:43:24  INFO  play                 ~ Application 'xjl_dw' is now started !
+ 2017-11-03 10:43:48  INFO  play                 ~ Starting /Users/Arthur/xjl_dw
+ 2017-11-03 10:43:49  WARN  play                 ~ You're running Play! in DEV mode
+ 2017-11-03 10:43:49  INFO  play                 ~ Listening for HTTP on port 8089 (Waiting a first request to start) ...
+ 2017-11-03 10:43:53  INFO  com.mchange.v2.log.MLog ~ MLog clients using log4j logging.
+ 2017-11-03 10:43:53  INFO  com.mchange.v2.c3p0.C3P0Registry ~ Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+ 2017-11-03 10:43:53  INFO  com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource ~ Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hge75o9rzg6wu6gttqle|31e1d49b, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hge75o9rzg6wu6gttqle|31e1d49b, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:postgresql://121.43.37.149/xjl_dw, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+ 2017-11-03 10:43:53  INFO  play                 ~ Connected to jdbc:postgresql://121.43.37.149/xjl_dw for default
+ 2017-11-03 10:43:53  INFO  org.hibernate.annotations.common.Version ~ HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+ 2017-11-03 10:43:53  INFO  org.hibernate.Version ~ HHH000412: Hibernate Core {4.2.19.Final}
+ 2017-11-03 10:43:53  INFO  org.hibernate.cfg.Environment ~ HHH000206: hibernate.properties not found
+ 2017-11-03 10:43:53  INFO  org.hibernate.cfg.Environment ~ HHH000021: Bytecode provider name : javassist
+ 2017-11-03 10:43:53  INFO  org.hibernate.service.jdbc.connections.internal.ConnectionProviderInitiator ~ HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+ 2017-11-03 10:44:05  INFO  org.hibernate.dialect.Dialect ~ HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+ 2017-11-03 10:44:05  INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder ~ HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+ 2017-11-03 10:44:05  INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator ~ HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+ 2017-11-03 10:44:05  INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory ~ HHH000397: Using ASTQueryTranslatorFactory
+ 2017-11-03 10:44:05  INFO  org.hibernate.validator.util.Version ~ Hibernate Validator 4.1.0.Final
+ 2017-11-03 10:44:05  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 10:44:05  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 10:44:06  WARN  play                 ~ Messages file missing for locale en
+ 2017-11-03 10:44:06  WARN  play                 ~ Messages file missing for locale zh
+ 2017-11-03 10:44:06  INFO  play                 ~ Application 'xjl_dw' is now started !
+ 2017-11-03 10:47:43  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from wx_user a where 1=1  limit ?
+ 2017-11-03 10:47:43  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from wx_user a where 1=1 
+ 2017-11-03 10:47:43  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_wx_student a where a.status='0AA' and is_default='Y' and wx_open_id='oxh64jkHZeWtbUYc2AMqDc0HiJZg'
+ 2017-11-03 10:47:43  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_student a  where a.student_id= ? 
+ 2017-11-03 10:47:43  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_class a where a.class_id= ?
+ 2017-11-03 10:47:43  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_parent_committee a where status='0AA'   and class_id=?   and wx_open_id=?
+ 2017-11-03 10:47:43  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:47:43  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:47:43  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_notice a order by a.notice_id desc limit ?
+ 2017-11-03 10:47:43  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_notice a 
+ 2017-11-03 10:47:59  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:47:59  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:47:59  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 10:49:11  INFO  play                 ~ Restart: Signature change !
+ 2017-11-03 10:49:12  INFO  org.hibernate.service.jdbc.connections.internal.ConnectionProviderInitiator ~ HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+ 2017-11-03 10:49:29  INFO  org.hibernate.dialect.Dialect ~ HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+ 2017-11-03 10:49:29  INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder ~ HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+ 2017-11-03 10:49:29  INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator ~ HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+ 2017-11-03 10:49:29  INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory ~ HHH000397: Using ASTQueryTranslatorFactory
+ 2017-11-03 10:49:29  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 10:49:29  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 10:49:29  WARN  play                 ~ Messages file missing for locale en
+ 2017-11-03 10:49:29  WARN  play                 ~ Messages file missing for locale zh
+ 2017-11-03 10:49:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from wx_user a where 1=1  limit ?
+ 2017-11-03 10:49:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from wx_user a where 1=1 
+ 2017-11-03 10:49:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_wx_student a where a.status='0AA' and is_default='Y' and wx_open_id='oxh64jkHZeWtbUYc2AMqDc0HiJZg'
+ 2017-11-03 10:49:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_student a  where a.student_id= ? 
+ 2017-11-03 10:49:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_class a where a.class_id= ?
+ 2017-11-03 10:49:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_parent_committee a where status='0AA'   and class_id=?   and wx_open_id=?
+ 2017-11-03 10:49:29  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:49:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:49:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:49:29  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 10:49:29  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:49:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_notice a order by a.notice_id desc limit ?
+ 2017-11-03 10:49:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_notice a 
+ 2017-11-03 10:51:04  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:51:04  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:51:04  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 10:52:30  INFO  play                 ~ Starting /Users/Arthur/xjl_dw
+ 2017-11-03 10:52:30  WARN  play                 ~ You're running Play! in DEV mode
+ 2017-11-03 10:52:30  INFO  play                 ~ Listening for HTTP on port 8089 (Waiting a first request to start) ...
+ 2017-11-03 10:52:48  INFO  com.mchange.v2.log.MLog ~ MLog clients using log4j logging.
+ 2017-11-03 10:52:48  INFO  com.mchange.v2.c3p0.C3P0Registry ~ Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+ 2017-11-03 10:52:48  INFO  com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource ~ Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hge75o9rzgidkeethvkm|75b87966, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hge75o9rzgidkeethvkm|75b87966, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:postgresql://121.43.37.149/xjl_dw, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+ 2017-11-03 10:52:48  INFO  play                 ~ Connected to jdbc:postgresql://121.43.37.149/xjl_dw for default
+ 2017-11-03 10:52:48  INFO  org.hibernate.annotations.common.Version ~ HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+ 2017-11-03 10:52:48  INFO  org.hibernate.Version ~ HHH000412: Hibernate Core {4.2.19.Final}
+ 2017-11-03 10:52:48  INFO  org.hibernate.cfg.Environment ~ HHH000206: hibernate.properties not found
+ 2017-11-03 10:52:48  INFO  org.hibernate.cfg.Environment ~ HHH000021: Bytecode provider name : javassist
+ 2017-11-03 10:52:48  INFO  org.hibernate.service.jdbc.connections.internal.ConnectionProviderInitiator ~ HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+ 2017-11-03 10:53:00  INFO  org.hibernate.dialect.Dialect ~ HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+ 2017-11-03 10:53:00  INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder ~ HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+ 2017-11-03 10:53:00  INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator ~ HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+ 2017-11-03 10:53:00  INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory ~ HHH000397: Using ASTQueryTranslatorFactory
+ 2017-11-03 10:53:00  INFO  org.hibernate.validator.util.Version ~ Hibernate Validator 4.1.0.Final
+ 2017-11-03 10:53:00  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 10:53:00  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 10:53:00  WARN  play                 ~ Messages file missing for locale en
+ 2017-11-03 10:53:00  WARN  play                 ~ Messages file missing for locale zh
+ 2017-11-03 10:53:00  INFO  play                 ~ Application 'xjl_dw' is now started !
+ 2017-11-03 10:53:06  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:53:06  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:53:06  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 10:53:52  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:53:52  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:53:52  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 10:54:28  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from wx_user a where 1=1  limit ?
+ 2017-11-03 10:54:28  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from wx_user a where 1=1 
+ 2017-11-03 10:54:28  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_wx_student a where a.status='0AA' and is_default='Y' and wx_open_id='oxh64jkHZeWtbUYc2AMqDc0HiJZg'
+ 2017-11-03 10:54:28  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_student a  where a.student_id= ? 
+ 2017-11-03 10:54:28  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_class a where a.class_id= ?
+ 2017-11-03 10:54:28  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_parent_committee a where status='0AA'   and class_id=?   and wx_open_id=?
+ 2017-11-03 10:54:28  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:54:28  INFO  play                 ~ 当前登录用户:俞玲玲 当前班级:高三（2）
+ 2017-11-03 10:54:28  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select * from xjl_dw_notice a order by a.notice_id desc limit ?
+ 2017-11-03 10:54:28  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_notice a 
+ 2017-11-03 10:54:42  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:54:42  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:54:42  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 10:55:07  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:55:07  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:55:07  INFO  play                 ~ ----------------appIdappIdappId:wx5f29a981bf8c03c2
+ 2017-11-03 10:55:07  INFO  play                 ~ ----------------url:http://localhost/mobile/A/noticeList?flag=testPC
+ 2017-11-03 10:55:07  INFO  play                 ~ ===========redirectURL=========== null
+ 2017-11-03 10:56:03  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:56:03  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:56:03  INFO  play                 ~ ----------------appIdappIdappId:wx5f29a981bf8c03c2
+ 2017-11-03 10:56:03  INFO  play                 ~ ----------------url:http://192.168.31.188/mobile/A/noticeList?flag=testPC
+ 2017-11-03 10:56:03  INFO  play                 ~ ===========redirectURL=========== null
+ 2017-11-03 10:56:07  INFO  play                 ~ ----------------appIdappIdappId:wx5f29a981bf8c03c2
+ 2017-11-03 10:56:07  INFO  play                 ~ ----------------url:http://192.168.31.188/mobile/A/groupList?flag=testPC
+ 2017-11-03 10:56:07  INFO  play                 ~ ===========redirectURL=========== null
+ 2017-11-03 10:58:08  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:58:08  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:58:08  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 10:58:46  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:58:46  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:58:46  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 10:59:48  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 10:59:48  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 10:59:48  INFO  play                 ~ ----------------appIdappIdappId:wx5f29a981bf8c03c2
+ 2017-11-03 10:59:48  INFO  play                 ~ ----------------url:http://192.168.31.188/mobile/A/noticeList?flag=testPC
+ 2017-11-03 10:59:48  INFO  play                 ~ ===========redirectURL=========== null
+ 2017-11-03 11:00:21  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:00:21  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:00:21  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:00:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:00:29  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:00:29  INFO  play                 ~ ----------------appIdappIdappId:wx5f29a981bf8c03c2
+ 2017-11-03 11:00:29  INFO  play                 ~ ----------------url:http://192.168.31.188/mobile/A/noticeList?flag=testPC
+ 2017-11-03 11:00:29  INFO  play                 ~ ===========redirectURL=========== null
+ 2017-11-03 11:00:44  INFO  play                 ~ ----------------appIdappIdappId:wx5f29a981bf8c03c2
+ 2017-11-03 11:00:44  INFO  play                 ~ ----------------url:http://192.168.31.188/mobile/A/noticeList?flag=testPC
+ 2017-11-03 11:00:44  INFO  play                 ~ ===========redirectURL=========== null
+ 2017-11-03 11:02:36  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:02:36  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:02:36  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:02:39  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:02:39  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:02:40  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:02:46  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:02:46  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:02:46  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:03:10  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:03:10  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:03:10  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:03:16  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:03:16  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:03:16  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:03:38  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:03:38  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:03:38  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:19:33  INFO  play                 ~ Starting /Users/Arthur/xjl_dw
+ 2017-11-03 11:19:34  WARN  play                 ~ You're running Play! in DEV mode
+ 2017-11-03 11:19:34  INFO  play                 ~ Listening for HTTP on port 8089 (Waiting a first request to start) ...
+ 2017-11-03 11:19:43  INFO  com.mchange.v2.log.MLog ~ MLog clients using log4j logging.
+ 2017-11-03 11:19:43  INFO  com.mchange.v2.c3p0.C3P0Registry ~ Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+ 2017-11-03 11:19:43  INFO  com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource ~ Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hge75o9rzhgzlp1knze8p|17f34f6f, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hge75o9rzhgzlp1knze8p|17f34f6f, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:postgresql://121.43.37.149/xjl_dw, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+ 2017-11-03 11:19:43  INFO  play                 ~ Connected to jdbc:postgresql://121.43.37.149/xjl_dw for default
+ 2017-11-03 11:19:43  INFO  org.hibernate.annotations.common.Version ~ HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+ 2017-11-03 11:19:43  INFO  org.hibernate.Version ~ HHH000412: Hibernate Core {4.2.19.Final}
+ 2017-11-03 11:19:43  INFO  org.hibernate.cfg.Environment ~ HHH000206: hibernate.properties not found
+ 2017-11-03 11:19:43  INFO  org.hibernate.cfg.Environment ~ HHH000021: Bytecode provider name : javassist
+ 2017-11-03 11:19:43  INFO  org.hibernate.service.jdbc.connections.internal.ConnectionProviderInitiator ~ HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+ 2017-11-03 11:19:55  INFO  org.hibernate.dialect.Dialect ~ HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+ 2017-11-03 11:19:55  INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder ~ HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+ 2017-11-03 11:19:55  INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator ~ HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+ 2017-11-03 11:19:55  INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory ~ HHH000397: Using ASTQueryTranslatorFactory
+ 2017-11-03 11:19:55  INFO  org.hibernate.validator.util.Version ~ Hibernate Validator 4.1.0.Final
+ 2017-11-03 11:19:55  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 11:19:55  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 11:19:56  WARN  play                 ~ Messages file missing for locale en
+ 2017-11-03 11:19:56  WARN  play                 ~ Messages file missing for locale zh
+ 2017-11-03 11:19:56  INFO  play                 ~ Application 'xjl_dw' is now started !
+ 2017-11-03 11:20:39  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:20:39  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:20:39  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:24:19  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:24:19  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:24:19  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:24:52  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:24:52  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:24:52  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:31:59  INFO  play                 ~ Restart: Signature change !
+ 2017-11-03 11:31:59  INFO  org.hibernate.service.jdbc.connections.internal.ConnectionProviderInitiator ~ HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+ 2017-11-03 11:32:11  INFO  org.hibernate.dialect.Dialect ~ HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+ 2017-11-03 11:32:11  INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder ~ HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+ 2017-11-03 11:32:11  INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator ~ HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+ 2017-11-03 11:32:11  INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory ~ HHH000397: Using ASTQueryTranslatorFactory
+ 2017-11-03 11:32:11  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 11:32:11  INFO  org.hibernate.validator.engine.resolver.DefaultTraversableResolver ~ Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+ 2017-11-03 11:32:11  WARN  play                 ~ Messages file missing for locale en
+ 2017-11-03 11:32:11  WARN  play                 ~ Messages file missing for locale zh
+ 2017-11-03 11:32:11  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:32:11  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:32:11  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:32:34  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:32:34  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:32:34  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:33:31  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:33:31  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:33:31  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:34:44  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:34:44  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:34:44  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条
+ 2017-11-03 11:35:38  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select a.school_id,a.school_name,a.school_code,a.school_logo,a.school_tel,a.school_area,a.school_address,a.school_domain ,b.wx_server_id,b.app_id,b.app_secret from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' order by a.school_id desc  limit ?
+ 2017-11-03 11:35:38  DEBUG org.hibernate.SQL    ~ /* dynamic native SQL query */ select count(1) cnt from xjl_dw_school a left join wx_server b on a.school_id=b.school_id where 1=3   or a.school_domain=? and a.status='0AA' and b.status='0AA' 
+ 2017-11-03 11:35:38  ERROR play                 ~ ==========ERROR==========查出的学校信息不唯一，共有0条

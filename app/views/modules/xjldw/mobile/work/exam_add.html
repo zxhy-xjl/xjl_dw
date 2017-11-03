@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<title>成绩单发布</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<link rel="stylesheet" href="/public/css/main.css" />
+
+<script src="/public/widgets/zeptojs/zepto.min.js"></script>
+<script src="/public/widgets/dropload/dropload.min.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+</head>
+<script>
+
+        angular.module('app', ['ngTouch'])
+                .value('appValue', {
+                    index: 1,
+                    size: 10
+                })
+                .factory('agentRemote', ['$http', 'appValue', function ($http, appValue) {
+                    return {
+                    	queryStudentList: function(index, size, searchText) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/WorkService/queryStudentList',
+                                params: {
+                                    PAGE_INDEX: index || appValue.index,
+                                    PAGE_SIZE: size || appValue.size
+                                }
+                            })
+                        },
+                        querySubjectList:function(index, size, searchText) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/WorkService/querySubjectList',
+                                params: {
+                                    PAGE_INDEX: index || appValue.index,
+                                    PAGE_SIZE: size || appValue.size
+                                }
+                            })
+                        },
+                        saveExamAndSubject: function(examTitle, subjectList) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/WorkService/saveExamSubject',
+                                params: {
+                                	examTitle: examTitle,
+                                	examSubjectList:subjectList
+                                }
+                            })
+                        }
+                        
+                    }
+                }])
+                .controller('MainController', ['$scope', 'appValue','agentRemote','$timeout', function ($scope, appValue,agentRemote,$timeout) {
+                	$scope.studentTotal = 0;
+                    $scope.studentList = [];
+                    $scope.subjectList = [];
+                    $scope.totalExam = 0;
+                    $scope.showSubjectWindow = false;
+                    
+                	//init page function
+                    $scope.initPage = function (me) {
+                		console.log("初始化学生列表")
+                        appValue.index = 1;
+                        agentRemote.queryStudentList(1).then(function (response) {
+                            $scope.studentTotal = response.data.data.total;
+                            $scope.studentList = response.data.data.data;
+                            console.log($scope.studentList);
+                            if (me && me.resetload)
+                                me.resetload();
+
+                        }, function (response) {
+                            //err
+                        });
+                        agentRemote.querySubjectList(1).then(function (response) {
+                            $scope.subjectList = response.data.data.data;
+                            for (var i = 0; i < $scope.subjectList.length; i++){
+                            	$scope.subjectList[i]["isExamSubject"] = false;
+                            }
+                            console.log($scope.studentList);
+                            if (me && me.resetload)
+                                me.resetload();
+
+                        }, function (response) {
+                            //err
+                        });
+                    };
+                    $scope.initPage();
+                    //考试
+                    $scope.exam = {};
+                    //考试科目
+                    $scope.examSubject = [];
+                    //保存考试和科目
+                    $scope.saveExamAndSubject = function(){
+                    	agentRemote.saveExamAndSubject($scope.exam.examTitle,$scope.subjectList).then(function (response) {
+                            console.log("response",response);
+                            window.location='/mobile/W/examDetail?examId='+response.data.data.examId;
+                        }, function (response) {
+                            //err
+                        });
+                    };
+                  
+                    //添加考试科目
+                    $scope.addExam = function(studentId){
+                    	$scope.exam
+                    	$scope.showSubjectWindow = true;
+                    }
+                    $scope.close = function(studentId){
+                    	$scope.showSubjectWindow = false;
+                    };
+                    $scope.checkTotalExam = function(){
+                    	$scope.totalExam = 0;
+                    	angular.forEach($scope.subjectList,function(item,index){
+                    		$scope.totalExam += item.exam;
+                    	});
+                    };
+                }]);
+    </script>
+<body  ng-cloak ng-controller="MainController">
+<div class="main">
+  <div class="row" ng-show="examSubject.length==0">
+    <div class="border padded-5 posrel"><span>${wxUser.currentClass.className}</span></div>
+    <h3 class="padded-b-10 padded-t-20">考试标题</h3>
+    <div class="border padded-5 posrel">
+          <input type="text" value="" class="border font-size-13" ng-model="exam.examTitle"/>
+    </div>
+    <div class="padded-5 clearfix posrel" ng-repeat="subject in subjectList">
+          <span class="select cur">
+          		<input type="checkbox" ng-model="subject.isExamSubject" ng-click="checkboxItemFun(subject.isExamSubject,$index)"/>
+          </span>
+          <span class="margin-l-10">{{subject.subjectTitle}}</span>
+    </div>
+    <input type="button" class="fr btn bg-success wid4 margin-r-10" ng-click="saveExamAndSubject()" value="保存考试科目"/>
+ 	<input type="button" class="btn btn-white fr" onClick="window.location='/mobile/W/examList'" value="返回"/>
+  </div>
+</div>
+</body>
+</html>

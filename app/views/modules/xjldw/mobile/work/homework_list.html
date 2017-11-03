@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<title>家庭作业</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<link rel="stylesheet" href="/public/css/main.css" />
+
+<script src="/public/widgets/zeptojs/zepto.min.js"></script>
+<script src="/public/widgets/dropload/dropload.min.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+<script>
+
+        angular.module('app', ['ngTouch'])
+                .value('appValue', {
+                    index: 1,
+                    size: 10
+                })
+                .factory('agentRemote', ['$http', 'appValue', function ($http, appValue) {
+                    return {
+                    	queryHomework: function(index, size, searchText) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/WorkService/queryHomeworkList',
+                                params: {
+                                    PAGE_INDEX: index || appValue.index,
+                                    PAGE_SIZE: size || appValue.size
+                                }
+                            })
+                        }
+                    }
+                }])
+                .controller('MainController', ['$scope', 'appValue','agentRemote','$timeout', function ($scope, appValue,agentRemote,$timeout) {
+                	$scope.homeworkTotal = 0;
+                    $scope.homeworkList = [];
+                	//init page function
+                    $scope.initPage = function (me) {
+                		console.log("考试列表")
+                        appValue.index = 1;
+                        agentRemote.queryHomework(1).then(function (response) {
+                            $scope.homeworkTotal = response.data.data.total;
+                            $scope.homeworkList = response.data.data.data;
+                            console.log($scope.homeworkList);
+                            if (me && me.resetload)
+                                me.resetload();
+
+                        }, function (response) {
+                            //err
+                        });
+                	};
+                	//执行初始化方法
+                	$scope.initPage();
+                }]);
+    </script>
+</head>
+
+<body ng-cloak ng-controller="MainController">
+<div class="main">
+  <div class="row">
+    <h3 class="padded-b-10 border-b  padded-t-10 text-default">每周作业
+      <input type="button" class="btn-blue btn fr margin-l-10" onClick="window.location='/mobile/W/homeworkAdd'" value="发布作业"/>
+    </h3>
+    <div class="content">
+      <div class="clearfix posrel" ng-repeat="homeworkInfo in homeworkList"> <a href="/mobile/W/homeworkDetail?homeworkId={{homeworkInfo.homework.homeworkId}}">
+        <div class=" wid80">
+          <h3 class="padded-t-10 font-weight-b ellipsis-2 text-main">【{{homeworkInfo.subjectTitle}}】{{homeworkInfo.homework.homeworkTitle}}</h3>
+          <p class="margin-t-10 ">{{homeworkInfo.homework.homeworkContent}}</p>
+          <p class="margin-b-10 font-size-12 text-auxiliaryed">布置时间：{{homeworkInfo.homework.createTime}}</p>
+        </div>
+        <div class="right-btn wid3 homework_model" ng-show="{{homeworkInfo.modelCount>0}}">
+          <img src="/public/images/mobile/homework_model.png"/>
+        </div>
+        </a> 
+        <div class="hr"></div>
+        </div>
+      
+      
+      <div class="dropload-down">
+        <div class="dropload-refresh">上拉加载更多</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

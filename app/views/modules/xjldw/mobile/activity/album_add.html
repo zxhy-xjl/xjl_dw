@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<title>相册添加</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<link rel="stylesheet" href="/public/css/main.css" />
+
+<script src="/public/widgets/zeptojs/zepto.min.js"></script>
+<script src="/public/widgets/dropload/dropload.min.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+</head>
+
+<body class=" userbg">
+<div class="main bg-white border-b">
+  <div class="row">
+    <h3 class="padded-b-10 padded-t-10 text-default font-weight-b">相册标题</h3>
+    <div class="border padded-3 margin-b-15">
+      <input type="text" placeholder="请输入相册标题"/>
+    </div>
+  </div>
+</div>
+<div class="main bg-white margin-t-10">
+  <div class="row">
+    <h3 class="padded-b-10 border-b padded-t-10 margin-b-10 text-default font-weight-b">选择模板</h3>
+    <div class="waterfall">
+      <div class="item active"><i></i><b></b><img src="../images/file_1.png"></div>
+      <div class="item"><i></i><b></b><img src="../images/file_2.png"></div>
+      <div class="item"><i></i><b></b><img src="../images/file_3.png"></div>
+      <div class="item"><i></i><b></b><img src="../images/file_4.png"></div>
+      <div class="item"><i></i><b></b><img src="../images/file_3.png"></div>
+      <div class="item"><i></i><b></b><img src="../images/file_2.png"></div>
+    </div>
+  </div>
+</div>
+<div class="height"></div>
+<div class="file_next"><a href="/mobile/A/albumAddImage">选择照片</a></div>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<link rel="stylesheet" href="/public/css/main.css" />
+
+ <script src="/public/widgets/layer.m/layer.m.js"></script>
+<script src="/public/widgets/zeptojs/zepto.min.js"></script>
+<script src="/public/widgets/dropload/dropload.min.js"></script>
+<script src="/public/widgets/angularjs/angular.min.js"></script>
+<script src="/public/widgets/angularjs/angular-touch.min.js"></script>
+<title>团购</title>
+<script>
+        angular.module('app', ['ngTouch'])
+                .value('appValue', {
+                    index: 1,
+                    size: 10
+                })
+                .factory('agentRemote', ['$http', 'appValue', function ($http, appValue) {
+                    return {
+                        getData: function(index, size, searchText) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/ActivityService/queryGroupBuyList',
+                                params: {
+                                    PAGE_INDEX: index || appValue.index,
+                                    PAGE_SIZE: size || appValue.size
+                                }
+                            })
+                        },
+                        getGroupItemData: function(groupBuyId) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/ActivityService/queryGroupItemList',
+                                params: {
+                                	groupBuyId: groupBuyId
+                                }
+                            })
+                        },
+                        saveGroupBuyOrder: function(groupItems) {
+                            return $http({
+                                method: 'GET',
+                                url: '/mobile/ActivityService/saveGroupBuyOrder',
+                                params: {
+                                	groupItems: groupItems
+                                }
+                            })
+                        }
+                    }
+                }])
+                .controller('MainController', ['$scope', 'appValue', 'agentRemote','$timeout', function ($scope, appValue, agentRemote,$timeout) {
+                    $scope.lists = [];
+                    $scope.groupItems = [];
+                    $scope.groupItemsTotalPrice=0;
+                    $scope.isRunning=true; //标注团购是否结束
+                    $scope.class='${wxUser.currentClass.classId}';
+                    console.log("isCommittee"+${wxUser.isCommittee});
+                    //next page function
+                    $scope.nextPage = function (me) {
+                        agentRemote.getData(++appValue.index).then(function (response) {
+                            $scope.lists = $scope.lists.concat(response.data.data.data);
+                            if (me && me.resetload)
+                                me.resetload();
+
+                        }, function (response) {
+                            //err
+                        });
+                    };
+                    //init page function
+                    $scope.initPage = function (me) {
+                        appValue.index = 1;
+                        agentRemote.getData(1).then(function (response) {
+                            $scope.total = response.data.data.total;
+                            $scope.lists = response.data.data.data;
+                            console.log($scope.lists);
+                            if (me && me.resetload)
+                                me.resetload();
+
+                        }, function (response) {
+                            //err
+                        });
+                    };
+                    //search function
+                    var search = function (searchText, me) {
+                        if (!searchText) {
+                            //reset
+                            $scope.initPage();
+                        }
+                        else {
+                            agentRemote.getData(1, appValue.size, $scope.searchText).then(function (response) {
+                                $scope.total = response.data.data.total;
+                                $scope.lists = response.data.data.data;
+                                if (me && me.resetload)
+                                    me.resetload();
+                            }, function (response) {
+                                //err
+                            });
+                        }
+                    };
+
+
+                    var timeout = null;
+                    //watch searchText
+                    $scope.$watch('searchText', function (newValue, oldValue) {
+                        if (newValue != oldValue) {
+                            if (!timeout) {
+                                timeout = $timeout(function () {
+                                    search(newValue);
+                                    timeout = null;
+                                }, 200);
+                            }
+
+                        }
+                    });
+                    //exec init
+                    $scope.initPage();
+                    
+                    //点击团或已团按钮触发事件
+                    $scope.buy=function(groupBuyId,isRunning){
+                    	$scope.isRunning=isRunning;
+                    	$scope.groupBuyFlag=true;
+                    	agentRemote.getGroupItemData(groupBuyId).then(function (response) {
+                    		if(response.data.ret=="0"){
+                    			  $scope.groupItems = response.data.data.data;
+                    			  getTotalPrice($scope.groupItems);
+                    			  console.log($scope.groupItems);
+                    		}else{
+                    			layer.open({
+                                    content: response.data.desc,
+                                    btn: ['知道了']
+                                });
+                    		}
+                        
+                        }, function (response) {
+                            //err
+                        });
+                    };
+                    
+                    //团购确定
+                    $scope.groupBuy=function(){
+                    	var flag=false;
+                    	angular.forEach($scope.groupItems,function(item,index){  
+                            if(item.isGroupBuy){
+                            	flag=true;
+                            }  
+                         }); 
+                    	if(flag){
+                    		agentRemote.saveGroupBuyOrder($scope.groupItems)
+                                .then(function (res) {
+                                    if (res.data.ret == '-1') {
+                                        layer.open({
+                                            content: res.data.desc,
+                                            btn: ['知道了']
+                                        });
+                                    }
+                                    else {
+                                        layer.open({
+                                            content: '团购成功',
+                                            btn: ['确定'],
+                                            end: function () {
+                                            	$scope.initPage();
+                                            	$scope.groupBuyFlag=false;
+                                            
+                                            }
+                                        });
+                                    }
+                                }, function () {
+                                    layer.open({
+                                        content: '提交异常',
+                                        btn: ['知道了']
+                                    });
+
+                                }).finally(function () {
+                                    layer.close(index);
+                                });
+                    	}else{
+                    		$scope.groupBuyFlag=false;
+                    	}
+                    	
+                    };
+                    //团购条目选择
+                    $scope.checkboxItemFun = function(checked,index) {
+                    	 $scope.groupItems[index].isGroupBuy = checked;
+                    	 getTotalPrice($scope.groupItems);
+                    };
+                    
+                    var getTotalPrice=function(groupItems){
+                    	var groupItemsTotalPrice=0;
+                   	 	angular.forEach(groupItems,function(item,index){  
+                           if(item.isGroupBuy){
+                           	groupItemsTotalPrice+=item.groupItemPrice;
+                           }  
+                        }); 
+                   	    $scope.groupItemsTotalPrice=groupItemsTotalPrice;
+                    }
+                    $scope.close= function () {
+                    	$scope.groupBuyFlag=false;
+                    };
+                    //init list for item
+                    //init dropload plugin
+                    //it's not the best way,just try it
+                    $('#scroller').dropload({
+                        domUp: {
+                            domClass: 'dropload-up',
+                            domRefresh: '<div class="dropload-refresh">↓下拉刷新</div>',
+                            domUpdate: '<div class="dropload-update">↑释放更新</div>',
+                            domLoad: '<div class="dropload-load"><span class="loading"></span>加载中...</div>'
+                        },
+                        domDown: {
+                            domClass: 'dropload-down',
+                            domRefresh: '<div class="dropload-refresh">↑上拉加载更多</div>',
+                            domUpdate: '<div class="dropload-update">↓释放加载</div>',
+                            domLoad: '<div class="dropload-load"><span class="loading"></span>加载中...</div>'
+                        },
+                        scrollArea: window,
+                        loadUpFn: function (me) {
+                            $scope.initPage(me);
+                            console.log('down');
+                        },
+                        loadDownFn: function (me) {
+
+                            $scope.nextPage(me);
+                            console.log('up');
+                        }
+                    });
+                }]);
+    </script>
+</head>
+<body ng-cloak ng-controller="MainController">
+<div class="main">
+  <div class="row">
+    <h3 class="padded-b-10 border-b  padded-t-10 text-default">团购
+      <input ng-show="${wxUser.isCommittee}==true" type="button" class="btn-blue btn fr" onClick="window.location='/mobile/a/groupAdd'" value="发布新团购"/>
+    </h3>
+    <div class="content">
+      <ul>
+        <li class="border-b posrel"  ng-repeat="item in lists">
+          <div class="wid80">
+            <a href="/mobile/A/groupDetail?groupBuyId={{item.groupBuyInfo.groupBuyId}}">
+            	<h3 class="padded-t-10 font-weight-b ellipsis-2 text-main">{{item.groupBuyInfo.groupBuyTitle}}</h3>
+            </a>
+            <p class="margin-t-10 margin-b-10">
+                   <span class="font-size-13">截止时间：{{item.groupBuyInfo.groupBuyEndTime}}</span>
+                   <span class="text-warning padded-l-20 font-size-13">{{item.groupBuyInfo.groupBuyStateInfo}}</span>
+            </p>
+          </div>
+          <div class="tuan-btn"> 
+            <input type="button" class=" btn wid3 bg-warning" ng-click="buy('{{item.groupBuyInfo.groupBuyId}}',{{item.isRunning}})"  
+             		value="团"   ng-show="item.isRunning && !item.hasOrderFlag"/>
+            <input type="button" class=" btn wid3 bg-warning" ng-click="buy('{{item.groupBuyInfo.groupBuyId}}',{{item.isRunning}})"  
+             		value="已团" ng-show="item.hasOrderFlag"/>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!--弹出框背景-->
+<div class="Nboxbg" ng-show="groupBuyFlag==true"></div>
+<div class="tuan-select" id="groupDiv" ng-show="groupBuyFlag==true">
+  <div class="margin-15 padded-b-5">
+    <div class="padded-5 clearfix posrel" ng-repeat="item in groupItems">
+          <span class="select cur">
+          		<input type="checkbox" ng-disabled="isRunning==false" ng-model="item.isGroupBuy" ng-click="checkboxItemFun(item.isGroupBuy,$index)" />
+          </span>
+          <span class="margin-l-10">{{item.groupItemTitle}}</span>
+          <span class="margin-l-15 font-size-14 text-auxiliary">￥{{item.groupItemPrice}}</span>
+    </div>
+  
+    <div class="hr margin-b-10 margin-t-10"></div>
+    <div class="padded-5 clearfix"><span>合计：</span><span class="text-danger">￥{{groupItemsTotalPrice}}</span>
+      <input type="button" class="fr btn wid4"  ng-click="close()" value="关闭"/>
+      <input type="button" class="fr btn bg-success wid4 margin-r-10" ng-show="isRunning==true"  ng-click="groupBuy()" value="确定"/>
+    
+      <!--input type="button" class="fr btn bgdefault text-default wid4"  onClick="window.location='index.html'" value="已结束"/--> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
